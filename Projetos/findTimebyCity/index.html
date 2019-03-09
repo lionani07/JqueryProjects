@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Find time</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+
+	<div class="container py-4">
+		<div class="card">
+			<div class="card-header">
+				<h4 class="card-title">Find time by Ciudade</h4>
+			</div>
+			<div class="card-body">
+                <div class="row col-sm-8">
+                    <div class="input-group">                        
+                        <input type="text" id="cidade" class="form-control" placeholder="Sua cidade">
+                        <div class="input-group-append">
+                            <button class="btn btn-success" type="submit">Find</button> 
+                        </div>
+                    </div>
+                </div>
+
+                <br/>
+
+				<div id="res" class="alert alert-success"><h1>0° C</h1></div>
+			</div>
+
+		</div>
+		
+
+	</div>
+
+	
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+<script>
+    	$(function(){  
+
+            $('button').on('click', function(){
+
+               var now = new Date(); 
+               var city = $('#cidade').val();
+
+                
+                 var searchtext = "select item.condition from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + city + "') and u='c'"
+  
+            var tempURL = "https://query.yahooapis.com/v1/public/yql?q=" + searchtext;
+
+
+               $.ajax({
+
+                    url: encodeURI(tempURL),
+                    dataType: 'json',
+                    type: 'GET',
+                    beforeSend: function(){
+                        $('#res').html('Cargando');
+                        console.log(cidade);
+                    },
+                    success: function(data){
+                        conole.log(data);
+                    }
+
+               });
+
+
+
+
+            });
+
+
+
+
+           
+
+    			
+    	});
+    </script>
+</body>
+</html>

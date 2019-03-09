@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DragDop</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <style type="text/css">
+        
+        #objeto{
+            width: 150px;
+            height: 150px;
+            background-color: #fd7e14;
+            position: absolute;
+            cursor: move;
+            border-radius: 75px;
+         
+        }
+    </style>
+
+</head>
+<body>
+
+	<div class="container py-4">
+
+        <div id="objeto"></div>
+		
+
+	</div>
+
+	
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+<script>
+    	$(function(){  
+
+            $('#objeto').on('mousedown', function(){
+              $(this).on('mousemove', function(e){    
+                var x = e.originalEvent.pageX - $(this).width()/2;
+                var y = e.originalEvent.pageY - $(this).height()/2;           
+                 $(this).css('left', x + 'px');
+                 $(this).css('top', y + 'px');
+              })
+            });
+
+            $('#objeto').on('mouseup', function(){
+                $(this).off('mousemove');
+            });
+
+
+
+
+    			
+    	});
+
+    </script>
+</body>
+</html>
