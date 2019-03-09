@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Forca senha</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+
+	<div class="container py-4">
+		<div class="card">
+			<div class="card-header">
+				<h4 class="card-title">Força de senha</h4>
+			</div>
+			<div class="card-body">
+				<label class="control-label">Digite sua Senha</label>
+				<input type="password" id="senha" class="form-control"><br/>
+				<div id="forca" class="alert alert-success">Força: 0</div>
+			</div>
+
+		</div>
+		
+
+	</div>
+
+	
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+<script>
+    	$(function(){    		
+
+    		$('#senha').on('keyup', function(){
+    			var forca = 0;
+    			var senha = $(this).val();   			
+
+    			if(senha.length >6){
+    				forca +=25;
+    			}
+    			var reg = new RegExp(/[a-z]/i);
+    			if(reg.test(senha)){
+    				forca +=25;
+    			}
+    			var reg = new RegExp(/[0-9]/i);
+    			if(reg.test(senha)){
+    				forca +=25;
+    			}
+    			var reg = new RegExp(/[^0-9a-z]/i);
+    			if(reg.test(senha)){
+    				forca +=25;
+    			}
+
+    			$('#forca').html("Força: " + forca  +  " Senha digitada: " + senha);
+
+    		});
+    			
+    	});
+    </script>
+</body>
+</html>
